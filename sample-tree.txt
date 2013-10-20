@@ -1,16 +1,7 @@
-testing
 ├── bin
 ├── config
-└── lib
-    ├── concerns
-    └── models
-
-5 directories, 0 files
-
-├ at beginnign of line = top level dir
-
-└ at beginning of line = top level dir
-
-├ with space before = sub dir
-
-└ with space before = sub dir
+├── lib
+│    ├── concerns
+│    └── models
+└── system
+    └── more
