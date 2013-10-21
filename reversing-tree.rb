@@ -18,20 +18,21 @@ class TreeParser
     mid_level_dirs = []
     self.tree.each_with_index do |dir, i|
       top_level_dir = dir.gsub(/\W/,"") if dir.start_with?("├") || dir.start_with?("└")
-      if dir.gsub(/\W/,"") == top_level_dir
+      dir = dir.gsub(/\W/,"")
+      if dir == top_level_dir
         mid_level_dirs = []
-        self.template_array << dir.gsub(/\W/,"")
+        self.template_array << dir
       else
         if self.tree[i-1].count(' ') == self.tree[i].count(' ') || self.tree[i-1].gsub(/\W/,"") == top_level_dir
-          path_string = "#{top_level_dir}/#{dir.gsub(/\W/,'')}"
-          mid_level_dirs << dir.gsub(/\W/,"")
+          path_string = "#{top_level_dir}/#{dir}"
+          mid_level_dirs << dir
         elsif self.tree[i-1].index(/\w/) > self.tree[i].index(/\w/)
           mid_level_dirs = []
-          path_string = "#{top_level_dir}/#{dir.gsub(/\W/,'')}"
-          mid_level_dirs << dir.gsub(/\W/,"")
+          path_string = "#{top_level_dir}/#{dir}"
+          mid_level_dirs << dir
         else
-          path_string = "#{top_level_dir}/#{mid_level_dirs.join('/')}/#{dir.gsub(/\W/,'')}"
-          mid_level_dirs << dir.gsub(/\W/,"")
+          path_string = "#{top_level_dir}/#{mid_level_dirs.join('/')}/#{dir}"
+          mid_level_dirs << dir
         end 
         self.template_array << path_string
       end
