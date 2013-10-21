@@ -4,8 +4,7 @@
 │   ├── concerns
 │   │   └── test
 │   └── models
-│       ├── what
-│       │   └── huht
-│       └── when
+│       └── what
+│           └── huht
 └── system
     └── more
