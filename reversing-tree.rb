@@ -24,12 +24,16 @@ class TreeParser
       else
         if self.tree[i-1].count(' ') == self.tree[i].count(' ') || self.tree[i-1].gsub(/\W/,"") == top_level_dir
           path_string = "#{top_level_dir}/#{dir.gsub(/\W/,'')}"
+          mid_level_dirs << dir.gsub(/\W/,"")
+        elsif self.tree[i-1].index(/\w/) > self.tree[i].index(/\w/)
+          mid_level_dirs = []
+          path_string = "#{top_level_dir}/#{dir.gsub(/\W/,'')}"
+          mid_level_dirs << dir.gsub(/\W/,"")
         else
           path_string = "#{top_level_dir}/#{mid_level_dirs.join('/')}/#{dir.gsub(/\W/,'')}"
-          mid_level_dirs << dir.gsub(/\W/, "")
+          mid_level_dirs << dir.gsub(/\W/,"")
         end 
         self.template_array << path_string
-        #mid_level_dirs << dir.gsub(/\W/, "")
       end
     end
     puts self.template_array.inspect
@@ -37,5 +41,5 @@ class TreeParser
 
 end
 
-t = TreeParser.new('sample-tree.txt')
+t = TreeParser.new('sample-tree-2.txt')
 t.build_template_array
